@@ -180,7 +180,7 @@ One important use case for DDIDS in DADS is to identify data that is received fr
 
 #### Public Derivation
 
-Another important used case for DDIDS in DADS is to avoid storing even the the DDID with its derivation chain. This may be an issue when a client wishes to communicate with a potenially very large number of public services. Each public service would be a new pairing with a unique DDID. If the derivation algorithm for an HD Key DDID could use the public key or public DID of the public service to generate the DDID then the client need not store the actual DDID but can recover the DDID by using the public DID of the server to re-derive the associated DDID.
+Another important use case for DDIDS in DADS is to avoid storing even the the DDID with its derivation chain. This may be an issue when a client wishes to communicate with a potenially very large number of public services. Each public service would be a new pairing with a unique DDID. If the derivation algorithm for an HD Key DDID could use the public key or public DID of the public service to generate the DDID then the client need not store the actual DDID but can recover the DDID by using the public DID of the server to re-derive the associated DDID.
 
 
 
@@ -193,9 +193,9 @@ One way to reduce lookups is to include key-rotation support directly in the dat
 If the data is used in an immutable data system the original data item is not changed but a new one created with changed keys. If the data item is used in a mutable data system then the original data item may be replaced with a new one.  
 
 
-When the the signer field DID prefix is the same as the item DID but has a fragment that references one of the keys in the keys field list, then the data item is self-signed in that the signer field key reference is contained in the data item itself. To establish that the signer private key and did private key are held by the same entity, either attach two signatures one by each private key or issue a  challenge to the public key of the data item DID.
+When the the signer field DID prefix is the same as the item DID but has a fragment that references one of the keys in the keys field list, then the data item is self-signed in that the signer field key reference is contained in the data item itself. To establish that the signer private key and did private key are held by the same entity, either attach two signatures one by each private key or issue a challenge to the public key of the data item DID.
 
-If the signer field value of a given data item (DID prefix with fragment) references the keys field of a different data item, the the given data item is not self-signed. 
+If the signer field value of a given data item (DID prefix with fragment) references the keys field of a different data item,  the given data item is not self-signed. 
 
 Example of key rotatable self-signed data item.
 
@@ -251,7 +251,7 @@ client would not have to remember anything to recreate the key pair.  For non-pu
 
 The other idea is to pre-rotate each key pair by publishing in the DID document associated with the DID key pair the next key to rotate too. This eliminates an exploit where a key gets compromised and then is used to rotate to a key not in control of the orginal owner. By pre-rotating a comprimized key can at best trigger a rotation to a key that is not compromised at which point the orignal owner uses the rotated key to generate a new pre-rotated key.  The pre-rotated key  is not vulnerable to exploit since it is not used to sign anything.
 
-The client then needs to keep a list of all the rotated keys so that if the client needs to regenerate an hd-key and doesnt remember which master key was used it can try the list of pre-rotated keys. Key recovery would also keep this list. This a couple of orders of magnitude less effort than having to keep all the keys pairs. Only the master keys in sequence.
+The client then needs to keep a list of all the rotated keys so that if the client needs to regenerate an hd-key and doesnt remember which master key was used it can try the list of pre-rotated keys. Key recovery would also keep this list. This is a couple of orders of magnitude less effort than having to keep all the keys pairs. Only the master keys in sequence.
 
 
 
