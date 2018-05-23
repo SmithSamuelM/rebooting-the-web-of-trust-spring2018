@@ -28,7 +28,7 @@ Associated with a DID is a DID Document (DDO). The DDO provides meta-data about 
 
 A DID or DDID has the following required syntax:
 
-did:*method*:*idstring*
+```did:*method*:*idstring*```
 
 The *method* is some short string that namespaces the DID and provides for unique behavior in the associated method specification. In this paper we will use the method *dad*.
 
@@ -535,7 +535,7 @@ The mnemonic task is remembering four images. Humans are very good at rememberin
 
 ##### Geneological Database Seed Recovery
 
-FamilySearch.org has over six billion genealogical records indexed by name and life-event type, event date, and event place. There are seven standard event types such as birth, death, marriage, census, military service, immigration, and probate.  A randomly selected record can be recovered with a name and the event details of event type, date, and place.  With six billion records and seven event types there are over 42 billion choices. The number of bits of entropy for one randomly selected record is log<sub>2</sub>(42,000,000,000) = 35.29. Suppose four records are randomly selected. hTe OTP seed is created by XORing a SHA-2 or Blake hash from each record where the hash is computed from the record name and event details.  This produces (2<sup>35</sup>/2<sup>2</sup>)<sup>4</sup> = 2<sup>33*4</sup>=2<sup>132</sup> combinations which corresponds to 132 bits of entropy. This exceeds the desired 128.  
+FamilySearch.org has over six billion genealogical records indexed by name and life-event type, event date, and event place. There are seven standard event types such as birth, death, marriage, census, military service, immigration, and probate.  A randomly selected record can be recovered with a name and the event details of event type, date, and place.  With six billion records and seven event types there are over 42 billion choices. The number of bits of entropy for one randomly selected record is log<sub>2</sub>(42,000,000,000) = 35.29. Suppose four records are randomly selected. The OTP seed is created by XORing a SHA-2 or Blake hash from each record where the hash is computed from the record name and event details.  This produces (2<sup>35</sup>/2<sup>2</sup>)<sup>4</sup> = 2<sup>33*4</sup>=2<sup>132</sup> combinations which corresponds to 132 bits of entropy. This exceeds the desired 128.  
 The mnemonic task is to remember the name, event type, event date, and event place for four different records. The records can be in any order. In addition to the mnemonic a physical backup of the hashes should also be created.  The physical backup could be split into four parts to make it more secure. If practical a threshold multi-party secrete sharing system could provide additional backup.
 
 ##### Google Maps Seed Recovery
